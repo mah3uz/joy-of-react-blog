@@ -6,7 +6,7 @@ import {
 } from 'next/font/google';
 import clsx from 'clsx';
 
-import {LIGHT_TOKENS, DARK_TOKENS, BLOG_TITLE, COLOR_THEME_COOKIE_NAME} from '@/constants';
+import {LIGHT_TOKENS, DARK_TOKENS, BLOG_TITLE, COLOR_THEME_COOKIE_NAME, BLOG_DESCRIPTION} from '@/constants';
 
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -28,11 +28,10 @@ const monoFont = Spline_Sans_Mono({
 
 export const metadata = {
   title: BLOG_TITLE,
-  description: 'A blog about software development and other things.',
+  description: BLOG_DESCRIPTION,
 }
 
 function RootLayout({ children }) {
-  // TODO: Dynamic theme depending on user preference
   const savedTheme = cookies().get(COLOR_THEME_COOKIE_NAME);
   const theme = savedTheme?.value || 'light';
 
@@ -44,11 +43,11 @@ function RootLayout({ children }) {
         data-color-theme={theme}
         style={theme === 'light' ? LIGHT_TOKENS : DARK_TOKENS}
       >
-      <body>
-      <Header initialTheme={theme} />
-      <main>{children}</main>
-      <Footer />
-      </body>
+        <body>
+          <Header initialTheme={theme} />
+          <main>{children}</main>
+          <Footer />
+        </body>
       </html>
     </RespectMotionPreferences>
   );

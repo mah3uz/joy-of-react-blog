@@ -1,4 +1,5 @@
 export const BLOG_TITLE = 'Bits & Bytes';
+export const BLOG_DESCRIPTION = 'A blog about software development and other things';
 
 export const COLOR_THEME_COOKIE_NAME = 'color-theme';
 
