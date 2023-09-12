@@ -1,5 +1,7 @@
 export const BLOG_TITLE = 'Bits & Bytes';
 
+export const COLOR_THEME_COOKIE_NAME = 'color-theme';
+
 export const LIGHT_COLORS = {
   '--color-text': 'hsl(0deg 0% 5%)',
   '--color-primary-100': 'hsl(240deg 100% 90%)',
@@ -53,7 +55,6 @@ export const DARK_COLORS = {
   '--color-gray-900': 'hsl(256deg 20% 90%)',
   '--color-gray-1000': 'white',
 };
-
 // Add in semantic / special colors
 LIGHT_COLORS['--color-primary'] =
   LIGHT_COLORS['--color-primary-500'];
@@ -73,8 +74,8 @@ LIGHT_COLORS['--color-page-background'] =
 LIGHT_COLORS['--color-page-border'] = 'transparent';
 LIGHT_COLORS['--color-card-background'] =
   LIGHT_COLORS['--color-gray-0'];
-LIGHT_COLORS['--color-card-border'] = 'transparent';
 
+LIGHT_COLORS['--color-card-border'] = 'transparent';
 DARK_COLORS['--color-primary'] =
   DARK_COLORS['--color-primary-500'];
 DARK_COLORS['--color-secondary'] =
@@ -93,9 +94,9 @@ DARK_COLORS['--color-page-border'] =
   'hsl(256deg 30% 50% / 0.2)';
 DARK_COLORS['--color-card-background'] =
   DARK_COLORS['--color-backdrop'];
+
 DARK_COLORS['--color-card-border'] =
   DARK_COLORS['--color-page-border'];
-
 export const LIGHT_SHADOWS = {
   '--shadow-page': `
     0px 1px 2px hsl(50deg 60% 50% / 0.25),
@@ -111,6 +112,7 @@ export const LIGHT_SHADOWS = {
     0px 8px 16px hsl(50deg 20% 50% / 0.2)
   `,
 };
+
 export const DARK_SHADOWS = {
   '--shadow-page': 'none',
   '--shadow-card': 'none',

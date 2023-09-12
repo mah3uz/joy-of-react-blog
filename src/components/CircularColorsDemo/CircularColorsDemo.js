@@ -93,7 +93,7 @@ function CircularColorsDemo() {
             }}
           >
             {status === 'idle' ? <Play /> : <Pause />}
-            <VisuallyHidden>Play</VisuallyHidden>
+            <VisuallyHidden>{status === 'idle' ? 'Play' : 'Pause'}</VisuallyHidden>
           </button>
           <button>
             <RotateCcw onClick={() => {
