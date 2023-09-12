@@ -1,24 +1,40 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 
 import BlogHero from '@/components/BlogHero';
 
 import styles from './postSlug.module.css';
+import {loadBlogPost} from "@/helpers/file-helpers";
+import {MDXRemote} from "next-mdx-remote/rsc";
+import Spinner from "@/components/Spinner";
+import {BLOG_TITLE} from "@/constants";
+import COMPONENTS_MAP from "@/helpers/mdx-helpers";
 
-function BlogPost() {
+export async function generateMetadata({params}) {
+  const { frontmatter} = await loadBlogPost(params.postSlug);
+
+  return {
+    title: `${frontmatter.title} • ${BLOG_TITLE}`,
+    description: frontmatter.abstract,
+  };
+}
+
+async function BlogPost({params}) {
+  const {content, frontmatter} = await loadBlogPost(params.postSlug);
+
   return (
     <article className={styles.wrapper}>
-      <BlogHero
-        title="Example post!"
-        publishedOn={new Date()}
-      />
-      <div className={styles.page}>
-        <p>This is where the blog post will go!</p>
-        <p>
-          You will need to use <em>MDX</em> to render all of
-          the elements created from the blog post in this
-          spot.
-        </p>
-      </div>
+      <Suspense fallback={<Spinner />}>
+        <BlogHero
+          title={frontmatter.title}
+          publishedOn={frontmatter.publishedOn}
+        />
+        <div className={styles.page}>
+          <MDXRemote
+            source={content}
+            components={COMPONENTS_MAP}
+          />
+        </div>
+      </Suspense>
     </article>
   );
 }
