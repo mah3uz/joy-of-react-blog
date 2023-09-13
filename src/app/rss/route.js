@@ -9,7 +9,7 @@ export async function GET() {
   const feed = new RSS({
     title: BLOG_TITLE,
     description: BLOG_DESCRIPTION,
-    feed_url: `${siteUrl}/rss.xml`,
+    feed_url: `${siteUrl}/rss`,
     site_url: siteUrl,
     image_url: `${siteUrl}/icon.png`,
     author: 'Mahfuz Shaikh',

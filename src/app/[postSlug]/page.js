@@ -1,11 +1,8 @@
-import React, {Suspense} from 'react';
-
 import BlogHero from '@/components/BlogHero';
 
 import styles from './postSlug.module.css';
 import {loadBlogPost} from "@/helpers/file-helpers";
 import {MDXRemote} from "next-mdx-remote/rsc";
-import Spinner from "@/components/Spinner";
 import {BLOG_TITLE} from "@/constants";
 import COMPONENTS_MAP from "@/helpers/mdx-helpers";
 
@@ -23,18 +20,16 @@ async function BlogPost({params}) {
 
   return (
     <article className={styles.wrapper}>
-      <Suspense fallback={<Spinner />}>
-        <BlogHero
-          title={frontmatter.title}
-          publishedOn={frontmatter.publishedOn}
+      <BlogHero
+        title={frontmatter.title}
+        publishedOn={frontmatter.publishedOn}
+      />
+      <div className={styles.page}>
+        <MDXRemote
+          source={content}
+          components={COMPONENTS_MAP}
         />
-        <div className={styles.page}>
-          <MDXRemote
-            source={content}
-            components={COMPONENTS_MAP}
-          />
-        </div>
-      </Suspense>
+      </div>
     </article>
   );
 }
